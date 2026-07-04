@@ -220,3 +220,20 @@ ON refresh_token(is_active);
 
 CREATE INDEX idx_refresh_token_device_id
 ON refresh_token(device_id);
+
+CREATE TABLE app_setting (
+    id BIGINT PRIMARY KEY DEFAULT 1,
+    max_failed_login_attempts INT NOT NULL
+        CHECK (max_failed_login_attempts >= 1)
+        DEFAULT 5,
+
+    account_lockout_duration_second INT NOT NULL
+        CHECK (account_lockout_duration_second >= 60)
+        DEFAULT 600,
+
+    allow_concurrent_logins BOOLEAN NOT NULL DEFAULT true,
+    maintenance_mode BOOLEAN NOT NULL DEFAULT false,
+    allow_new_registrations BOOLEAN NOT NULL DEFAULT true,
+    allow_login BOOLEAN NOT NULL DEFAULT true,
+    CHECK (id = 1)
+);
