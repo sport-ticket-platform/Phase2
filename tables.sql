@@ -198,3 +198,25 @@ CREATE TABLE report (
     response text,
     responded_at timestamptz
 );
+
+CREATE TABLE refresh_token (
+    token_id BIGSERIAL PRIMARY KEY,
+    token varchar(255) NOT NULL UNIQUE,
+    user_id BIGINT NOT NULL REFERENCES users(user_id),
+    created_at timestamptz NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    expiration_date timestamptz NOT NULL,
+    is_active bool NOT NULL DEFAULT true,
+    revoked_at timestamptz,
+    revoked_reason text,
+    ip_address varchar(45),
+    user_agent text,
+    device_id varchar(255)
+);
+CREATE INDEX idx_refresh_token_user_id
+ON refresh_token(user_id);
+
+CREATE INDEX idx_refresh_token_is_active
+ON refresh_token(is_active);
+
+CREATE INDEX idx_refresh_token_device_id
+ON refresh_token(device_id);
