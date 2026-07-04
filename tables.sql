@@ -27,7 +27,8 @@ CREATE TABLE users (
     password varchar(255) NOT NULL,
     balance numeric(12, 2) DEFAULT 0 NOT NULL,
     city_id INT NOT NULL REFERENCES city(city_id),
-    status bool DEFAULT true NOT NULL
+    status bool DEFAULT true NOT NULL,
+    two_factor_enabled bool DEFAULT false NOT NULL
 );
 
 CREATE TABLE team (
