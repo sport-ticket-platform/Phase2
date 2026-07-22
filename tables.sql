@@ -63,7 +63,6 @@ CREATE TABLE "match" (
     match_time timestamptz NOT NULL,
     host_team_id INT NOT NULL REFERENCES team(team_id),
     guest_team_id INT NOT NULL REFERENCES team(team_id),
-    organizer_id INT NOT NULL REFERENCES organizer(organizer_id),
     CHECK(host_team_id <> guest_team_id)
 );
 
