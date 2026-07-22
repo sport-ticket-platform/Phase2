@@ -33,7 +33,7 @@ CREATE TABLE users (
 
 CREATE TABLE team (
     team_id SERIAL PRIMARY KEY,
-    team_name varchar(50) NOT NULL,
+    name varchar(50) NOT NULL,
     sport_id INT NOT NULL REFERENCES sport(sport_id),
     city_id INT NOT NULL REFERENCES city(city_id)
 );
@@ -48,14 +48,6 @@ CREATE TABLE venue (
     longitude decimal Not Null
 );
 
-CREATE TABLE organizer (
-    organizer_id SERIAL PRIMARY KEY,
-    is_company bool DEFAULT true NOT NULL,
-    name varchar(50) NOT NULL,
-    email varchar(255) NOT NULL UNIQUE,
-    phone_number varchar(20) NOT NULL UNIQUE
-);
-
 CREATE TABLE league (
     league_id SERIAL PRIMARY KEY,
     name varchar(50) NOT NULL,
@@ -63,7 +55,7 @@ CREATE TABLE league (
     UNIQUE (sport_id, name)
 );
 
-CREATE TABLE matches (
+CREATE TABLE "match" (
     match_id BIGSERIAL PRIMARY KEY,
     league_id INT NOT NULL REFERENCES league(league_id),
     sport_id INT NOT NULL REFERENCES sport(sport_id),
