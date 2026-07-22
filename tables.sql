@@ -42,7 +42,10 @@ CREATE TABLE venue (
     venue_id SERIAL PRIMARY KEY,
     name varchar(50) NOT NULL,
     city_id INT NOT NULL REFERENCES city(city_id),
-    full_address varchar(255) NOT NULL
+    street varchar(255) NOT NULL,
+    postal_code varchar(15) NOT NULL,
+    latitude decimal Not Null,
+    longitude decimal Not Null
 );
 
 CREATE TABLE organizer (
