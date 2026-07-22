@@ -71,7 +71,7 @@ CREATE TABLE ticket_category (
     name varchar(50) NOT NULL
 );
 
-CREATE TABLE ticket_category_config (
+CREATE TABLE ticket_config (
   config_id SERIAL PRIMARY KEY,
   match_id bigint NOT NULL REFERENCES matches(match_id),
   category_id INT NOT NULL REFERENCES ticket_category(category_id),
