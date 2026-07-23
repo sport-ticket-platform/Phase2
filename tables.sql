@@ -73,7 +73,7 @@ CREATE TABLE ticket_category (
 
 CREATE TABLE ticket_config (
   config_id SERIAL PRIMARY KEY,
-  match_id bigint NOT NULL REFERENCES matches(match_id),
+  match_id bigint NOT NULL REFERENCES "match"(match_id),
   category_id INT NOT NULL REFERENCES ticket_category(category_id),
   price numeric(10, 2) NOT NULL CHECK(price >= 0),
   amenities JSONB,
@@ -83,7 +83,7 @@ CREATE TABLE ticket_config (
 
 CREATE TABLE seat (
     seat_id BIGSERIAL PRIMARY KEY,
-    config_id INT NOT NULL REFERENCES ticket_category_config(config_id),
+    config_id INT NOT NULL REFERENCES ticket_config(config_id),
     section INT NOT NULL,
     row_no INT NOT NULL,
     seat_no INT NOT NULL,
