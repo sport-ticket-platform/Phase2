@@ -107,6 +107,7 @@ CREATE TABLE reservation (
 
 CREATE TABLE reservation_seat (
     reservation_id BIGINT NOT NULL REFERENCES reservation(reservation_id),
+    config_id int NOT NULL REFERENCES ticket_config(config_id),
     seat_id BIGINT NOT NULL REFERENCES seat(seat_id),
     is_active BOOLEAN NOT NULL DEFAULT true,
     PRIMARY KEY (reservation_id, seat_id)
